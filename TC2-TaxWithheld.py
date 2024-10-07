@@ -27,11 +27,15 @@ def main():
     print(greeting)
     print("-" * len(greeting))
     
-    employeeSalary = int(input("\tEnter the employee's weekly salary: "))
-    dependents = int(input("\tEnter the number of dependents: "))
+    # Gets input values from user
+    while (employeeSalary := validateFloat(input("\tEnter the employee's weekly salary: "))) == None:
+        print("Please enter a valid salary")
 
-    provTaxWithheld = employeeSalary * PROV_TAX_RATE
-    fedTaxWithheld = employeeSalary * FED_TAX_RATE
+    while (dependents := validateInt(input("\tEnter the number of dependents: "))) == None:
+        print("You must enter a valid number of dependents")
+
+    provTaxWithheld = calculateValue(employeeSalary, PROV_TAX_RATE)
+    fedTaxWithheld = calculateValue(employeeSalary, FED_TAX_RATE)
     dependentDeduction = 0
 
     if dependents > 0:
@@ -42,6 +46,26 @@ def main():
         Depend Deduction for {2} dependents: {3:.2f}
         Total Withheld: {4:.2f}
         Total Take-Home: {5:.2f}""".format(provTaxWithheld, fedTaxWithheld, dependents, dependentDeduction, provTaxWithheld + fedTaxWithheld - dependentDeduction, employeeSalary - (provTaxWithheld + fedTaxWithheld - dependentDeduction)))
+
+# Takes an input value and a modifier and multiplies them together
+def calculateValue(inputValue, modifier):
+    return inputValue * modifier
+
+# Validates inputQuery as a number. Converts to int and returns converted value.
+# Returns None if the user enters a non-number
+def validateInt(inputQuery):
+    try:
+        return int(inputQuery)
+    except:
+        return None
+
+# Validates whether inputQuery is a valid number by trying to convert to a float
+# Returns the converted float if successfull and None if fails
+def validateFloat(inputQuery):
+    try:
+        return float(inputQuery)
+    except:
+        return None        
 
 if __name__ == "__main__":
     main()
