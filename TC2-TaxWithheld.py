@@ -44,11 +44,11 @@ def main():
     totalTaxes =  provTaxWithheld + fedTaxWithheld - dependentDeduction
     totalTakehome = employeeSalary - (provTaxWithheld + fedTaxWithheld - dependentDeduction)
 
-    print("""    Provincial Tax Withheld: {0:.2f}
-    Federal Tax Withheld: {1:.2f}
-    Depend Deduction for {2} dependents: {3:.2f}
-    Total Withheld: {4:.2f}
-    Total Take-Home: {5:.2f}""".format(provTaxWithheld, fedTaxWithheld, dependents, dependentDeduction, totalTaxes, totalTakehome))
+    print("""    Provincial Tax Withheld: ${0:.2f}
+    Federal Tax Withheld: ${1:.2f}
+    Depend Deduction for {2} dependents: ${3:.2f}
+    Total Withheld: ${4:.2f}
+    Total Take-Home: ${5:.2f}""".format(provTaxWithheld, fedTaxWithheld, dependents, dependentDeduction, totalTaxes, totalTakehome))
 
 # Takes an input value and a modifier and multiplies them together
 def calculateValue(inputValue, modifier):
